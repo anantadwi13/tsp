@@ -23,6 +23,7 @@ int main(){
     }
 
     //START OF PRIMS
+    int degreeVertex[vertex];
     int MST[vertex][vertex];
     int vertexNow = 0;
     int isTraversed[vertex];
@@ -35,6 +36,7 @@ int main(){
         isTraversed[i]=0;
         primCost[i]=INF;
         primFrom[i]=INF;
+        degreeVertex[i]=0;
     }
 
     for(int i=0;i<vertex;i++){
@@ -59,6 +61,10 @@ int main(){
     for(int i=1;i<vertex;i++){
         MST[primFrom[i]][i] = primCost[i];
         MST[i][primFrom[i]] = primCost[i];
+        if(primCost[i]!=INF){
+            degreeVertex[i]++;
+            degreeVertex[primFrom[i]]++;
+        }
     }
     //END OF PRIMS
 
@@ -68,6 +74,11 @@ int main(){
             printf("%8d ",MST[i][j]);
         }
         printf("\n");
+    }
+
+    printf("\n\n");
+    for(int i=0;i<vertex;i++){
+        printf("%8d ",degreeVertex[i]);
     }
     //END CHECKING MST
 }
