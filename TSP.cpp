@@ -43,13 +43,13 @@ int main(){
         minVertex = INF;
         for(int j=0;j<vertex;j++){
             if(graph[vertexNow][j]!=INF && !isTraversed[j]){
-                if(graph[vertexNow][j]<minCost){
-                    minCost = graph[vertexNow][j];
-                    minVertex = j;
-                }
                 if(graph[vertexNow][j]<primCost[j]){
                     primCost[j] = graph[vertexNow][j];
                     primFrom[j] = vertexNow;
+                }
+                if(primCost[j]<minCost){
+                    minCost = primCost[j];
+                    minVertex = j;
                 }
             }
         }
